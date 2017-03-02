@@ -3,7 +3,7 @@
 ## Знакомство с React
 
 ```bash
-npm checkout react-intro
+git checkout react-intro
 ```
 
 ## Компоненты
