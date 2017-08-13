@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import todos from './todos';
 import Header from './components/Header';
 import Todo from './components/Todo';
+import Form from './components/Form';
 
 class App extends React.Component {
     constructor(props) {
@@ -15,6 +16,8 @@ class App extends React.Component {
 
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
     handleStatusChange(id) {
@@ -35,6 +38,33 @@ class App extends React.Component {
         this.setState({ todos });
     }
 
+    handleAdd(title) {
+        let todos = this.state.todos;
+
+        let todo = {
+            id: todos.length + 1,
+            title,
+            completed: false
+        };
+
+
+        todos = [...todos, todo];
+
+        this.setState({ todos });
+    }
+
+    handleEdit(id, title) {
+        let todos = this.state.todos.map(todo => {
+            if (todo.id === id) {
+                todo.title = title;
+            }
+
+            return todo;
+        });
+
+        this.setState({ todos });
+    }
+
     render() {
         return (
             <main>
@@ -48,9 +78,12 @@ class App extends React.Component {
                               completed={todo.completed}
                               onStatusChange={this.handleStatusChange}
                               onDelete={this.handleDelete}
+                              onEdit={this.handleEdit}
                         />
                     )}
                 </section>
+
+                <Form onAdd={this.handleAdd} />
             </main>
         );
     }
