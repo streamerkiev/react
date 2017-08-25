@@ -14,6 +14,12 @@ class Todo extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.editing) {
+            this.refs.title.focus();
+        }
+    }
+
     renderDisplay() {
         return (
             <div className={`todo${this.props.completed ? ' completed' : ''}`}>
