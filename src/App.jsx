@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 import todos from './todos';
 import Header from './components/Header';
@@ -11,7 +12,7 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            todos: this.props.initialData
+            todos: []
         };
 
         this.handleAdd = this.handleAdd.bind(this);
@@ -20,51 +21,67 @@ class App extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
     }
 
-    nextId() {
-        this._nextId = this._nextId || 4;
-        return this._nextId++;
+    componentDidMount() {
+        axios.get('/api/todos')
+            .then(response => this.setState({ todos: response.data }))
+            .catch(this.handleError);
     }
 
     handleAdd(title) {
-        const todo = {
-            id: this.nextId(),
-            title,
-            completed: false
-        };
+        axios.post('/api/todos', {title})
+            .then(response => response.data)
+            .then(todo => {
+                const todos = [...this.state.todos, todo];
 
-        const todos = [...this.state.todos, todo];
-
-        this.setState({ todos });
-    } 
+                this.setState({ todos });
+            })
+            .catch(this.handleError);
+    }
 
     handleDelete(id) {
-        const todos = this.state.todos.filter(todo => todo.id !== id);
+        axios.delete(`/api/todos/${id}`)
+            .then(() => {
+                const todos = this.state.todos.filter(todo => todo.id !== id);
 
-        this.setState({ todos });
+                this.setState({ todos });
+            })
+            .catch(this.handleError);
     }
 
     handleToggle(id) {
-        const todos = this.state.todos.map(todo => {
-            if (todo.id === id) {
-                todo.completed = !todo.completed;
-            }
+        axios.patch(`/api/todos/${id}`)
+            .then(response => {
+                const todos = this.state.todos.map(todo => {
+                    if (todo.id === id) {
+                        todo = response.data;
+                    }
 
-            return todo;
-        });
+                    return todo;
+                });
 
-        this.setState({ todos });
+                this.setState({ todos });
+            })
+            .catch(this.handleError);
     }
 
     handleEdit(id, title) {
-        const todos = this.state.todos.map(todo => {
-            if (todo.id === id) {
-                todo.title = title;
-            }
+        axios.put(`/api/todos/${id}`, {title})
+            .then(response => {
+                const todos = this.state.todos.map(todo => {
+                    if (todo.id === id) {
+                        todo = response.data;
+                    }
 
-            return todo;
-        });
+                    return todo;
+                });
 
-        this.setState({ todos });
+                this.setState({ todos });
+            })
+            .catch(this.handleError);
+    }
+
+    handleError(error) {
+        console.log(error);
     }
 
     render() {
