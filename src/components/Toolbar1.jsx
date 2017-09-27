@@ -11,13 +11,13 @@ function Toolbar({ user }) {
 
                 <section className="mdc-toolbar__section mdc-toolbar__section--align-end">
                     <nav className="mdc-tab-bar">
-                        <a href="/" className="mdc-tab">Главная</a>
-                        <a href="/about" className="mdc-tab">О проекте</a>
-                        <a href="/books" className="mdc-tab">Книги</a>
+                        <Link to="/" className="mdc-tab">Главная</Link>
+                        <Link to="/about" className="mdc-tab">О проекте</Link>
+                        <Link to="/books" className="mdc-tab">Книги</Link>
                         {user ?
-                            <a href="/logout" className="mdc-tab">Выйти</a>
+                            <Link to="/logout" className="mdc-tab">Выйти</Link>
                             :
-                            <a href="/login" className="mdc-tab">Войти</a>
+                            <Link to="/login" className="mdc-tab">Войти</Link>
                         }
                     </nav>
                 </section>
