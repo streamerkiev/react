@@ -14,7 +14,6 @@ function Toolbar() {
                         <ToolbarLink exact to="/" className="mdc-tab">Главная</ToolbarLink>
                         <ToolbarLink to="/about" className="mdc-tab">О проекте</ToolbarLink>
                         <ToolbarLink to="/books" className="mdc-tab">Книги</ToolbarLink>
-                        <ToolbarLink to="/logout" className="mdc-tab">Выйти</ToolbarLink>
                         <ToolbarLink to="/login" className="mdc-tab">Войти</ToolbarLink>
                     </nav>
                 </section>
