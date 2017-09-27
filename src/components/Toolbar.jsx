@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Toolbar({ user }) {
+function Toolbar() {
     return (
         <header className="mdc-toolbar">
             <div className="mdc-toolbar__row">
@@ -14,11 +14,7 @@ function Toolbar({ user }) {
                         <a href="/" className="mdc-tab">Главная</a>
                         <a href="/about" className="mdc-tab">О проекте</a>
                         <a href="/books" className="mdc-tab">Книги</a>
-                        {user ?
-                            <a href="/logout" className="mdc-tab">Выйти</a>
-                            :
-                            <a href="/login" className="mdc-tab">Войти</a>
-                        }
+                        <a href="/login" className="mdc-tab">Войти</a>
                     </nav>
                 </section>
             </div>

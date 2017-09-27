@@ -25,7 +25,7 @@ class App extends Component {
                             <Route exact path="/" component={Home} />
                             <Route path="/about" component={About} />
                             <Route exact path="/books/:topic?" render={props => <Books books={this.props.books} {...props} />} />
-                            <Route path="/books/:topic/:book" component={Book} />
+                            <Route path="/books/:topic/:book" render={props => <Book books={this.props.books} {...props} />} />
                             <Route path="/login" component={Login} />
                             <Route component={NotFound} />
                         </Switch>

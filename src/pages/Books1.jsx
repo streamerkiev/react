@@ -2,8 +2,8 @@ import React from 'react';
 
 import Card from '../components/Card';
 
-function Books({ match, books }) {
-    const books = match.params.topic ? books.filter(book => book.topic === match.params.topic) : books;
+function Books({ match, books: data }) {
+    const books = match.params.topic ? data.filter(book => book.topic === match.params.topic) : data;
 
     return (
         <main id="books">

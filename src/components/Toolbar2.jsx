@@ -1,7 +1,7 @@
 import React from 'react';
 import ToolbarLink from './ToolbarLink';
 
-function Toolbar({ user }) {
+function Toolbar() {
     return (
         <header className="mdc-toolbar">
             <div className="mdc-toolbar__row">
@@ -14,11 +14,8 @@ function Toolbar({ user }) {
                         <ToolbarLink exact to="/" className="mdc-tab">Главная</ToolbarLink>
                         <ToolbarLink to="/about" className="mdc-tab">О проекте</ToolbarLink>
                         <ToolbarLink to="/books" className="mdc-tab">Книги</ToolbarLink>
-                        {user ?
-                            <ToolbarLink to="/logout" className="mdc-tab">Выйти</ToolbarLink>
-                            :
-                            <ToolbarLink to="/login" className="mdc-tab">Войти</ToolbarLink>
-                        }
+                        <ToolbarLink to="/logout" className="mdc-tab">Выйти</ToolbarLink>
+                        <ToolbarLink to="/login" className="mdc-tab">Войти</ToolbarLink>
                     </nav>
                 </section>
             </div>
