@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-import todos from './todos';
 import Header from './components/Header';
 import Todo from './components/Todo';
 import Form from './components/Form';
@@ -109,12 +108,4 @@ class App extends React.Component {
     }
 }
 
-App.propTypes = {
-    initialData: React.PropTypes.arrayOf(React.PropTypes.shape({
-        id: React.PropTypes.number.isRequired,
-        title: React.PropTypes.string.isRequired,
-        completed: React.PropTypes.bool.isRequired
-    })).isRequired
-};
-
-ReactDOM.render(<App initialData={todos} />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
