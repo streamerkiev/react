@@ -1,7 +1,7 @@
 {
-  "name": "react-basics",
+  "name": "server-presentation",
   "version": "1.0.0",
-  "description": "Исходный код для курса Основы React",
+  "description": "server-presentation",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --content-base ./public",
     "build": "webpack -p"
